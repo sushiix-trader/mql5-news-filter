@@ -1,6 +1,6 @@
 # News Filter — self-contained package for any MQL5 EA
 
-**Folder:** `util/news-filter/` (include + exporter + CSV + docs)
+**Package:** include + exporter + CSV + docs (this repository)
 
 Reusable economic-calendar filter. Live/demo uses the MT5 calendar; Strategy
 Tester uses a deterministic CSV replay (`AUTO` by default). Only
@@ -18,9 +18,9 @@ Tester uses a deterministic CSV replay (`AUTO` by default). Only
 | `stage_csv_to_files.sh` | Copies package CSV → `MQL5/Files/` for the tester |
 | `README.md` | This guide |
 
-Breakout EAs may still `#include` the old breakout-util path; that file is a
-shim to this package. The old `Scripts/export_news_calendar_csv.mq5` is a
-pointer stub — run the exporter from **this** folder.
+Compile and run `export_news_calendar_csv.mq5` from **this** folder. Copy or
+symlink the package into your MT5 `MQL5` tree (or `#include` it via a relative
+path from your EA).
 
 ## Public seam (three calls)
 
@@ -35,7 +35,7 @@ pointer stub — run the exporter from **this** folder.
 1. **Include** (adjust `..\` depth for your EA folder):
 
 ```mql5
-#include "..\..\..\util\news-filter\NewsFilter_Advanced.mqh"
+#include "NewsFilter_Advanced.mqh"   // or a relative path to this package
 ```
 
 2. **Tester file** (required for CSV replay in Strategy Tester):
@@ -165,7 +165,7 @@ Pass your EA's magic number to `NFA_Manage`. The sweep only touches positions an
 If you use Claude Code, Cursor, or similar, this prompt works well:
 
 ```text
-Add the news filter from util/news-filter/NewsFilter_Advanced.mqh to my EA.
+Add the news filter from NewsFilter_Advanced.mqh to my EA.
 
 1. Include the module (path relative to the EA under Experts/).
 2. Add #property tester_file "news_calendar_replay.csv".
@@ -238,14 +238,9 @@ complete-or-fail by default; verify the compiler result and the export log
 before copying the CSV into a tester data folder.
 
 ```text
-breakoutpipeline-prop.mq5        0 errors, 2 existing warnings (previous build)
-breakout-v1.mq5                  0 errors, 2 existing warnings (previous build)
 export_news_calendar_csv.mq5     verify with current source before use
-news_calendar_replay_probe.mq5   0 errors, 0 warnings (previous build)
+NewsFilter_DropIn_Example.mq5    0 errors, 0 warnings (previous build)
 ```
-
-The two EA warnings are the pre-existing version-format and `long`-to-`int`
-warnings; the news-filter changes add no compiler errors.
 
 ## Deterministic Historical CSV Replay
 
@@ -306,7 +301,7 @@ a 30-minute pre-block, export from at least `2025.01.01 23:30`.
 
 ### 2. Stage the file for the tester
 
-The breakout EAs declare:
+Your EA should declare:
 
 ```mql5
 #property tester_file "news_calendar_replay.csv"
@@ -327,7 +322,7 @@ NFA_BlockMinutesBefore=30
 NFA_BlockMinutesAfter=30
 NFA_FlattenPositions=true       ; optional
 NFA_FlattenLeadMinutes=30       ; clamped to the block lead
-NFA_CancelPendings=false        ; breakout pipeline has no pending-order requirement
+NFA_CancelPendings=false        ; set true if your EA uses pending orders
 ```
 
 With `AUTO`, the same inputs work for a charted EA and a Strategy Tester

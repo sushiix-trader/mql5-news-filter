@@ -1,7 +1,7 @@
 //+------------------------------------------------------------------+
 //| NewsFilter_Advanced.mqh                                          |
 //| Shared drop-in economic-calendar filter for any MQL5 EA          |
-//| Package: util/news-filter/   Version 1.1                         |
+//| Package: mql5-news-filter   Version 1.1                          |
 //+------------------------------------------------------------------+
 //
 // Public seam (call these from any EA):

@@ -1,6 +1,6 @@
 //+------------------------------------------------------------------+
 //| export_news_calendar_csv.mq5                                     |
-//| Package: util/news-filter/                                       |
+//| Package: mql5-news-filter                                        |
 //| Export MT5 economic-calendar values for deterministic tester use. |
 //| Cache flow based on MQL5 CodeBase 52977 (CalendarCache).          |
 //+------------------------------------------------------------------+

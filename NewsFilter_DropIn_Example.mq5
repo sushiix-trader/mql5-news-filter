@@ -1,6 +1,6 @@
 //+------------------------------------------------------------------+
 //| NewsFilter_DropIn_Example.mq5                                    |
-//| Minimal skeleton showing how to wire util/news-filter into an EA |
+//| Minimal skeleton showing how to wire this news-filter into an EA |
 //+------------------------------------------------------------------+
 #property copyright "Project local utility"
 #property version   "1.00"
