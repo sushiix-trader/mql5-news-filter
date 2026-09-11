@@ -14,7 +14,7 @@ Tester uses a deterministic CSV replay (`AUTO` by default). Only
 | `NewsFilter_DropIn_Example.mq5` | Minimal wiring skeleton |
 | `export_news_calendar_csv.mq5` | Builds/refreshes the replay CSV (writes to `MQL5\Files`) |
 | `MQL5Book/` | CalendarCache support used by the exporter |
-| `news_calendar_replay.csv` | Local copy of the replay file (~32MB; gitignored) |
+| `news_calendar_replay.csv` | Replay calendar for Strategy Tester (~32MB) |
 | `stage_csv_to_files.sh` | Copies package CSV → `MQL5/Files/` for the tester |
 | `README.md` | This guide |
 
